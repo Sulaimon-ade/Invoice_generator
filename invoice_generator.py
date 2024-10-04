@@ -240,7 +240,7 @@ def add_customer():
     save_customer(customer)
 
 def main():
-    logo_path = "Fayina_Couture_Logo_2-removebg-preview.png"  # Make sure this is a valid path to the logo image
+    logo_path = "static/Fayina_Couture_Logo_2-removebg-preview.png"  # Make sure this is a valid path to the logo image
     while True:
         display_menu()
         choice = input("Enter your choice (1-4): ")
