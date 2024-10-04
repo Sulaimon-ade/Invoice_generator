@@ -20,39 +20,42 @@ def index():
 # Route to generate the invoice PDF
 @app.route('/generate', methods=['POST'])
 def generate_invoice():
-    # Collect form data
+    # Collect form data for customer
     customer_name = request.form['customer_name']
     customer_address = request.form['customer_address']
     customer_email = request.form['customer_email']
-    
-    items = []
-    # Assuming the form allows multiple items (could be dynamically added in JS or just a few fields in HTML)
-    for i in range(1, 4):  # Example with 3 items, modify according to form structure
-        description = request.form.get(f'description_{i}')
-        quantity = request.form.get(f'quantity_{i}')
-        unit_price = request.form.get(f'unit_price_{i}')
-        if description and quantity and unit_price:
-            items.append(InvoiceItem(description, int(quantity), float(unit_price)))
 
+    # Create a Customer instance
+    customer = Customer(customer_name, customer_address, customer_email)
+    
+    # Collect form data for multiple items
+    descriptions = request.form.getlist('description[]')
+    quantities = request.form.getlist('quantity[]')
+    unit_prices = request.form.getlist('unit_price[]')
+    
+    # Create a list of InvoiceItem objects
+    items = []
+    for description, quantity, unit_price in zip(descriptions, quantities, unit_prices):
+        items.append(InvoiceItem(description, int(quantity), float(unit_price)))
+
+    # Received amount
     received_amount = float(request.form['received_amount'])
 
-    # Create Customer and Invoice instances
-    customer = Customer(customer_name, customer_address, customer_email)
+    # Create an Invoice instance
     invoice = Invoice(customer, items)
+    
+    # Calculate balance due
+    balance_due = invoice.total_amount() - received_amount
 
     # Generate the PDF in memory using io.BytesIO
     pdf_output = io.BytesIO()
-    balance_due = invoice.total_amount() - received_amount
-    logo_path = "static/Fayina_Couture_Logo_2-removebg-preview.png" 
+    logo_path = "static/Fayina_Couture_Logo_2-removebg-preview.png"
     
-    # Call the function to generate the PDF
+    # Generate the PDF using your existing function
     generate_invoice_pdf(invoice, pdf_output, logo_path, received_amount, balance_due)
 
-    # Seek to the beginning of the BytesIO buffer
+    # Send the PDF as a downloadable file
     pdf_output.seek(0)
-
-    # Send the PDF file as an attachment
     return send_file(pdf_output, as_attachment=True, download_name=f'{invoice.invoice_number}.pdf', mimetype='application/pdf')
-
 if __name__ == "__main__":
     app.run(debug=True)

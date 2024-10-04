@@ -4,6 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate Invoice</title>
+    <script>
+        function addItem() {
+            // Get the item container div
+            const itemContainer = document.getElementById('item-container');
+
+            // Create a new div for the new item
+            const newItemDiv = document.createElement('div');
+            newItemDiv.classList.add('item');
+            
+            // Create input fields for description, quantity, and unit price
+            newItemDiv.innerHTML = `
+                <label for="description[]">Description:</label>
+                <input type="text" name="description[]" required><br><br>
+
+                <label for="quantity[]">Quantity:</label>
+                <input type="number" name="quantity[]" required><br><br>
+
+                <label for="unit_price[]">Unit Price:</label>
+                <input type="number" step="0.01" name="unit_price[]" required><br><br>
+            `;
+            
+            // Append the new item div to the container
+            itemContainer.appendChild(newItemDiv);
+        }
+    </script>
 </head>
 <body>
     <h1>Generate Invoice</h1>
@@ -18,17 +43,22 @@
         <input type="email" id="customer_email" name="customer_email" required><br><br>
 
         <h2>Invoice Items</h2>
-        <label for="description_1">Description 1:</label>
-        <input type="text" id="description_1" name="description_1"><br><br>
+        <div id="item-container">
+            <!-- First item fields -->
+            <div class="item">
+                <label for="description[]">Description:</label>
+                <input type="text" name="description[]" required><br><br>
 
-        <label for="quantity_1">Quantity 1:</label>
-        <input type="number" id="quantity_1" name="quantity_1"><br><br>
+                <label for="quantity[]">Quantity:</label>
+                <input type="number" name="quantity[]" required><br><br>
 
-        <label for="unit_price_1">Unit Price 1:</label>
-        <input type="number" step="0.01" id="unit_price_1" name="unit_price_1"><br><br>
+                <label for="unit_price[]">Unit Price:</label>
+                <input type="number" step="0.01" name="unit_price[]" required><br><br>
+            </div>
+        </div>
 
-        <!-- Repeat for more items, or use JS to dynamically add more items -->
-        
+        <button type="button" onclick="addItem()">Add Another Item</button><br><br>
+
         <label for="received_amount">Received Amount:</label>
         <input type="number" step="0.01" id="received_amount" name="received_amount" required><br><br>
 
