@@ -70,53 +70,39 @@ class Invoice:
             "date": self.date
         }
 
-
-
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
+from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
+from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.pagesizes import letter
-from reportlab.lib.pagesizes import A4
-from reportlab.lib import colors
-from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.enums import TA_CENTER
-from reportlab.lib import utils
-from reportlab.pdfgen.canvas import Canvas
-from reportlab.lib.pagesizes import A4
-from reportlab.lib import colors
-from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.enums import TA_CENTER
-from reportlab.lib import utils
-from reportlab.pdfgen.canvas import Canvas
 
-# Function to draw the logo in the bottom-right corner
-def draw_logo_footer(canvas, logo_path):
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
+from reportlab.lib.units import inch
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.enums import TA_CENTER
+from reportlab.lib import utils
+
+# Function to resize and draw the logo at a specific position (top-left corner)
+def draw_logo(canvas, logo_path):
     canvas.saveState()
-    if logo_path:
-        try:
-            logo = utils.ImageReader(logo_path)
-            img_width, img_height = logo.getSize()
-            aspect = img_height / float(img_width)
-            canvas.drawImage(logo, 450, 30, width=100, height=100 * aspect)  # Place it in the bottom-right corner
-        except Exception as e:
-            print(f"Error loading footer logo: {e}")
+    logo = utils.ImageReader(logo_path)
+    img_width, img_height = logo.getSize()
+    aspect = img_height / float(img_width)
+    canvas.drawImage(logo, 40, 750, width=100, height=100 * aspect)
     canvas.restoreState()
 
-# Function to draw the watermark on every page (lower center of the page)
+# Function to draw the watermark on every page (center of the page)
 def draw_watermark(canvas, logo_path):
     canvas.saveState()
-    if logo_path:
-        try:
-            canvas.setFillGray(0.9, 0.15)  # Further increase transparency
-            logo = utils.ImageReader(logo_path)
-            canvas.drawImage(logo, 200, 400, width=150, height=200, mask='auto')  # Lower center placement
-        except Exception as e:
-            print(f"Error loading watermark: {e}")
+    canvas.setFillGray(0.9, 0.1)  # Light and transparent (watermark effect)
+    logo = utils.ImageReader(logo_path)
+    canvas.drawImage(logo, 0, 200, width=600, height=600, mask='auto')
     canvas.restoreState()
 
-# Custom Canvas to handle watermark and footer logo
+# Custom Canvas to handle both watermark and first page logo
 class CustomCanvas(Canvas):
     def __init__(self, *args, **kwargs):
         self.logo_path = kwargs.pop('logo_path', None)
@@ -129,9 +115,9 @@ class CustomCanvas(Canvas):
         super().showPage()
 
     def onFirstPage(self, *args, **kwargs):
-        # Draw the logo in the footer on every page
+        # Draw the logo on the first page
         if self.logo_path:
-            draw_logo_footer(self, self.logo_path)
+            draw_logo(self, self.logo_path)
         super().onFirstPage(*args, **kwargs)
 
 # Function to generate the PDF invoice with logo and watermark
@@ -142,18 +128,17 @@ def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, b
     styles = getSampleStyleSheet()
     styles['Title'].alignment = TA_CENTER
 
-    # Title and Date Section
+    # Title Section
     title = Paragraph(f"<b>INVOICE</b><br/>Invoice No: {invoice.invoice_number}", styles['Title'])
     date = Paragraph(f"Date: {invoice.date}", styles['Normal'])
 
+    # Add title and date
     elements.append(title)
-    elements.append(Spacer(1, 12))
-    elements.append(date)
     elements.append(Spacer(1, 12))
 
     # Customer and Company Info
     customer_info = Paragraph(f"<b>Billed To:</b><br/>{invoice.customer.name}<br/>{invoice.customer.address}<br/>{invoice.customer.email}", styles['Normal'])
-    company_info = Paragraph(f"<b>Fayina Luxuty Couture</b><br/>Block E2 Abu gidado street,wuye, Abuja, Nigeria Abuja<br/>Contact: fayinaluxurycouture@yahoo.com<br/>Phone: +2349032837162", styles['Normal'])
+    company_info = Paragraph(f"<b>Fayina Luxury Couture</b><br/>Block E2 Abu gidado street,wuye, Abuja, Nigeria Abuja<br/>Contact: fayinaluxurycouture@yahoo.com<br/>Phone: +2349032837162", styles['Normal'])
 
     table_info = [[customer_info, company_info]]
     table_header = Table(table_info, colWidths=[3 * inch, 3 * inch])
@@ -161,16 +146,9 @@ def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, b
     elements.append(Spacer(1, 12))
 
     # Line Items Section
-    items_data = [["#", "Item", "Qty", "Unit Price", "Total"]]
+    items_data = [["S/N", "Item", "Qty", "Unit Price", "Total"]]
     for idx, item in enumerate(invoice.items, start=1):
         items_data.append([f"{idx}", item.description, item.quantity, f"N {item.unit_price:.2f}", f"N {item.total_price():.2f}"])
-
-    # Reduce the empty rows dynamically based on the number of items
-    max_items = 3  # Reduce maximum item space to balance layout
-    if len(invoice.items) < max_items:
-        extra_space = max_items - len(invoice.items)
-        for _ in range(extra_space):
-            items_data.append(["", "", "", "", ""])
 
     # Totals Section
     items_data += [["", "", "", "Subtotal", f"N {invoice.total_before_tax():.2f}"],
@@ -181,18 +159,18 @@ def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, b
 
     table_items = Table(items_data, colWidths=[0.5 * inch, 3.5 * inch, 1 * inch, 1.5 * inch, 1.5 * inch])
     table_items.setStyle(TableStyle([
-        ('GRID', (0, 0), (-1, -1), 1, colors.black),
-        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+        ('GRID', (0, 0), (-1, -1), 1, colors.darkblue),
+        ('BACKGROUND', (0, 0), (-1, 0), colors.lightskyblue),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
         ('FONTSIZE', (0, 0), (-1, -1), 10),
-        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
     ]))
     elements.append(table_items)
 
     elements.append(Spacer(1, 12))
 
-    # Footer Section
+    # Footer
     footer = Paragraph("""
     <b>Thank you for your business!</b><br/>
     Payment can be made to:<br/>
