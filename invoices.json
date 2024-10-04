@@ -1,0 +1,737 @@
+[
+    {
+        "invoice_number": "INV-1728001143",
+        "customer": {
+            "name": "John Doe",
+            "address": "123 Business Street, NY",
+            "email": "johndoe@example.com"
+        },
+        "items": [
+            {
+                "description": "Website Design",
+                "quantity": 1,
+                "unit_price": 500,
+                "total_price": 500
+            },
+            {
+                "description": "Hosting",
+                "quantity": 12,
+                "unit_price": 10,
+                "total_price": 120
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 620,
+        "tax_amount": 62.0,
+        "total_amount": 682.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728001230",
+        "customer": {
+            "name": "John Doe",
+            "address": "123 Business Street, NY",
+            "email": "johndoe@example.com"
+        },
+        "items": [
+            {
+                "description": "Website Design",
+                "quantity": 1,
+                "unit_price": 500,
+                "total_price": 500
+            },
+            {
+                "description": "Hosting",
+                "quantity": 12,
+                "unit_price": 10,
+                "total_price": 120
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 620,
+        "tax_amount": 62.0,
+        "total_amount": 682.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728001269",
+        "customer": {
+            "name": "sulaimon O",
+            "address": "anhdofdf",
+            "email": "okdinga@gmail.com"
+        },
+        "items": [
+            {
+                "description": "pop",
+                "quantity": 2,
+                "unit_price": 3200.0,
+                "total_price": 6400.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 6400.0,
+        "tax_amount": 640.0,
+        "total_amount": 7040.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728001455",
+        "customer": {
+            "name": "John Doe",
+            "address": "123 Business Street, NY",
+            "email": "johndoe@example.com"
+        },
+        "items": [
+            {
+                "description": "Website Design",
+                "quantity": 1,
+                "unit_price": 500,
+                "total_price": 500
+            },
+            {
+                "description": "Hosting",
+                "quantity": 12,
+                "unit_price": 10,
+                "total_price": 120
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 620,
+        "tax_amount": 62.0,
+        "total_amount": 682.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728001539",
+        "customer": {
+            "name": "Fayina adedoyi",
+            "address": "wuye ogun state",
+            "email": "fayinawuye@gmail.com"
+        },
+        "items": [
+            {
+                "description": "cloth",
+                "quantity": 2,
+                "unit_price": 5000.0,
+                "total_price": 10000.0
+            },
+            {
+                "description": "pant",
+                "quantity": 3,
+                "unit_price": 200.0,
+                "total_price": 600.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 10600.0,
+        "tax_amount": 1060.0,
+        "total_amount": 11660.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728001735",
+        "customer": {
+            "name": "John Doe",
+            "address": "123 Business Street, NY",
+            "email": "johndoe@example.com"
+        },
+        "items": [
+            {
+                "description": "Website Design",
+                "quantity": 1,
+                "unit_price": 500,
+                "total_price": 500
+            },
+            {
+                "description": "Hosting",
+                "quantity": 12,
+                "unit_price": 10,
+                "total_price": 120
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 620,
+        "tax_amount": 62.0,
+        "total_amount": 682.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728001849",
+        "customer": {
+            "name": "aboyi",
+            "address": "jahi",
+            "email": "okunoye@gmail.com"
+        },
+        "items": [
+            {
+                "description": "cloth",
+                "quantity": 2,
+                "unit_price": 200.0,
+                "total_price": 400.0
+            },
+            {
+                "description": "shirt",
+                "quantity": 2,
+                "unit_price": 400.0,
+                "total_price": 800.0
+            },
+            {
+                "description": "casual",
+                "quantity": 1,
+                "unit_price": 5000.0,
+                "total_price": 5000.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 6200.0,
+        "tax_amount": 620.0,
+        "total_amount": 6820.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728002580",
+        "customer": {
+            "name": "Zainab",
+            "address": "Lagos, Nigeria",
+            "email": "zainab@example.com"
+        },
+        "items": [
+            {
+                "description": "chiffon",
+                "quantity": 4,
+                "unit_price": 4000,
+                "total_price": 16000
+            },
+            {
+                "description": "silk",
+                "quantity": 8,
+                "unit_price": 16000,
+                "total_price": 128000
+            },
+            {
+                "description": "crepe",
+                "quantity": 5,
+                "unit_price": 7500,
+                "total_price": 37500
+            },
+            {
+                "description": "dreses",
+                "quantity": 2,
+                "unit_price": 20000,
+                "total_price": 40000
+            },
+            {
+                "description": "2 piece",
+                "quantity": 2,
+                "unit_price": 20000,
+                "total_price": 40000
+            },
+            {
+                "description": "adire Boubou",
+                "quantity": 1,
+                "unit_price": 8000,
+                "total_price": 8000
+            },
+            {
+                "description": "Adire kaftan",
+                "quantity": 2,
+                "unit_price": 20000,
+                "total_price": 40000
+            },
+            {
+                "description": "waybill",
+                "quantity": 1,
+                "unit_price": 1500,
+                "total_price": 1500
+            },
+            {
+                "description": "waybill",
+                "quantity": 1,
+                "unit_price": 1600,
+                "total_price": 1600
+            },
+            {
+                "description": "waybill",
+                "quantity": 1,
+                "unit_price": 1200,
+                "total_price": 1200
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 313800,
+        "tax_amount": 31380.0,
+        "total_amount": 345180.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728002632",
+        "customer": {
+            "name": "okunoye",
+            "address": "adejobi street",
+            "email": "okunoye@gmail.com"
+        },
+        "items": [
+            {
+                "description": "shirt",
+                "quantity": 3,
+                "unit_price": 200.0,
+                "total_price": 600.0
+            },
+            {
+                "description": "pat",
+                "quantity": 2,
+                "unit_price": 500.0,
+                "total_price": 1000.0
+            },
+            {
+                "description": "socks",
+                "quantity": 4,
+                "unit_price": 30.0,
+                "total_price": 120.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 1720.0,
+        "tax_amount": 172.0,
+        "total_amount": 1892.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728004074",
+        "customer": {
+            "name": "Zainab",
+            "address": "Lagos, Nigeria",
+            "email": "zainab@example.com"
+        },
+        "items": [
+            {
+                "description": "chiffon",
+                "quantity": 4,
+                "unit_price": 4000,
+                "total_price": 16000
+            },
+            {
+                "description": "silk",
+                "quantity": 8,
+                "unit_price": 16000,
+                "total_price": 128000
+            },
+            {
+                "description": "crepe",
+                "quantity": 5,
+                "unit_price": 7500,
+                "total_price": 37500
+            },
+            {
+                "description": "dreses",
+                "quantity": 2,
+                "unit_price": 20000,
+                "total_price": 40000
+            },
+            {
+                "description": "2 piece",
+                "quantity": 2,
+                "unit_price": 20000,
+                "total_price": 40000
+            },
+            {
+                "description": "adire Boubou",
+                "quantity": 1,
+                "unit_price": 8000,
+                "total_price": 8000
+            },
+            {
+                "description": "Adire kaftan",
+                "quantity": 2,
+                "unit_price": 20000,
+                "total_price": 40000
+            },
+            {
+                "description": "waybill",
+                "quantity": 1,
+                "unit_price": 1500,
+                "total_price": 1500
+            },
+            {
+                "description": "waybill",
+                "quantity": 1,
+                "unit_price": 1600,
+                "total_price": 1600
+            },
+            {
+                "description": "waybill",
+                "quantity": 1,
+                "unit_price": 1200,
+                "total_price": 1200
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 313800,
+        "tax_amount": 31380.0,
+        "total_amount": 345180.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728004143",
+        "customer": {
+            "name": "adeniyi",
+            "address": "gold court estate jahi",
+            "email": "jahiman@gmail.com"
+        },
+        "items": [
+            {
+                "description": "boubou",
+                "quantity": 2,
+                "unit_price": 40000.0,
+                "total_price": 80000.0
+            },
+            {
+                "description": "jacket",
+                "quantity": 1,
+                "unit_price": 70000.0,
+                "total_price": 70000.0
+            },
+            {
+                "description": "pant",
+                "quantity": 3,
+                "unit_price": 50000.0,
+                "total_price": 150000.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 300000.0,
+        "tax_amount": 30000.0,
+        "total_amount": 330000.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728004409",
+        "customer": {
+            "name": "man",
+            "address": "woman",
+            "email": "manin"
+        },
+        "items": [
+            {
+                "description": "ho",
+                "quantity": 3,
+                "unit_price": 470832.0,
+                "total_price": 1412496.0
+            },
+            {
+                "description": "glskd",
+                "quantity": 3,
+                "unit_price": 5869.0,
+                "total_price": 17607.0
+            },
+            {
+                "description": "ghosn",
+                "quantity": 4,
+                "unit_price": 2093984.0,
+                "total_price": 8375936.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 9806039.0,
+        "tax_amount": 980603.9,
+        "total_amount": 10786642.9,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728004825",
+        "customer": {
+            "name": "ndhd",
+            "address": "",
+            "email": "dhos"
+        },
+        "items": [
+            {
+                "description": "dhos",
+                "quantity": 2,
+                "unit_price": 2343.0,
+                "total_price": 4686.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 4686.0,
+        "tax_amount": 468.6,
+        "total_amount": 5154.6,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728004995",
+        "customer": {
+            "name": "suleiman ade",
+            "address": "gold court estate",
+            "email": "okunoyesouleiman@gmail.com"
+        },
+        "items": [
+            {
+                "description": "pant",
+                "quantity": 3,
+                "unit_price": 15000.0,
+                "total_price": 45000.0
+            },
+            {
+                "description": "shirt",
+                "quantity": 5,
+                "unit_price": 8000.0,
+                "total_price": 40000.0
+            },
+            {
+                "description": "shoes",
+                "quantity": 2,
+                "unit_price": 50000.0,
+                "total_price": 100000.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 185000.0,
+        "tax_amount": 18500.0,
+        "total_amount": 203500.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728005570",
+        "customer": {
+            "name": "fhjgjhj",
+            "address": "tfj",
+            "email": "huif"
+        },
+        "items": [
+            {
+                "description": "tgf",
+                "quantity": 5,
+                "unit_price": 400.0,
+                "total_price": 2000.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 2000.0,
+        "tax_amount": 200.0,
+        "total_amount": 2200.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728005622",
+        "customer": {
+            "name": "hhhhhhhhhhhhhhhhh",
+            "address": "ggggggggggggg",
+            "email": "hhhhhhhhhhh"
+        },
+        "items": [
+            {
+                "description": "rrrrrrrr",
+                "quantity": 3,
+                "unit_price": 8.0,
+                "total_price": 24.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 24.0,
+        "tax_amount": 2.4000000000000004,
+        "total_amount": 26.4,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728005937",
+        "customer": {
+            "name": "fatimah gidado",
+            "address": "wuye fct",
+            "email": "nooooonoo@gmail.com"
+        },
+        "items": [
+            {
+                "description": "crop top",
+                "quantity": 1,
+                "unit_price": 12000.0,
+                "total_price": 12000.0
+            },
+            {
+                "description": "pant",
+                "quantity": 1,
+                "unit_price": 15000.0,
+                "total_price": 15000.0
+            },
+            {
+                "description": "short",
+                "quantity": 2,
+                "unit_price": 4000.0,
+                "total_price": 8000.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 35000.0,
+        "tax_amount": 3500.0,
+        "total_amount": 38500.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728006103",
+        "customer": {
+            "name": "gj",
+            "address": "f",
+            "email": "r"
+        },
+        "items": [
+            {
+                "description": "f",
+                "quantity": 4,
+                "unit_price": 88.0,
+                "total_price": 352.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 352.0,
+        "tax_amount": 35.2,
+        "total_amount": 387.2,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728006160",
+        "customer": {
+            "name": "t",
+            "address": "u",
+            "email": "y"
+        },
+        "items": [
+            {
+                "description": "f",
+                "quantity": 9,
+                "unit_price": 98.0,
+                "total_price": 882.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 882.0,
+        "tax_amount": 88.2,
+        "total_amount": 970.2,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728006195",
+        "customer": {
+            "name": "j",
+            "address": "u",
+            "email": "o"
+        },
+        "items": [
+            {
+                "description": "y",
+                "quantity": 9,
+                "unit_price": 89.0,
+                "total_price": 801.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 801.0,
+        "tax_amount": 80.10000000000001,
+        "total_amount": 881.1,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728006279",
+        "customer": {
+            "name": "9",
+            "address": "8",
+            "email": "8"
+        },
+        "items": [
+            {
+                "description": "7",
+                "quantity": 8,
+                "unit_price": 7.0,
+                "total_price": 56.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 56.0,
+        "tax_amount": 5.6000000000000005,
+        "total_amount": 61.6,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728006348",
+        "customer": {
+            "name": "o",
+            "address": "p",
+            "email": "o"
+        },
+        "items": [
+            {
+                "description": "i",
+                "quantity": 8,
+                "unit_price": 77.0,
+                "total_price": 616.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 616.0,
+        "tax_amount": 61.6,
+        "total_amount": 677.6,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728006422",
+        "customer": {
+            "name": "usdh",
+            "address": "dousihd",
+            "email": "shd"
+        },
+        "items": [
+            {
+                "description": "hsod",
+                "quantity": 2,
+                "unit_price": 90.0,
+                "total_price": 180.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 180.0,
+        "tax_amount": 18.0,
+        "total_amount": 198.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728006504",
+        "customer": {
+            "name": "hjd",
+            "address": "dj",
+            "email": "dhj"
+        },
+        "items": [
+            {
+                "description": "jo",
+                "quantity": 3,
+                "unit_price": 3.0,
+                "total_price": 9.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 9.0,
+        "tax_amount": 0.9,
+        "total_amount": 9.9,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728007076",
+        "customer": {
+            "name": "mama",
+            "address": "popo",
+            "email": "ouoo"
+        },
+        "items": [
+            {
+                "description": "ytug",
+                "quantity": 2,
+                "unit_price": 87.0,
+                "total_price": 174.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 174.0,
+        "tax_amount": 17.400000000000002,
+        "total_amount": 191.4,
+        "date": "2024-10-04"
+    }
+]
