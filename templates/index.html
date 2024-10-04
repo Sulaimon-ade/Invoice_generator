@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate Invoice</title>
+    <link rel="stylesheet" href="styles.css">
     <script>
         function addItem() {
             // Get the item container div
@@ -16,13 +17,13 @@
             // Create input fields for description, quantity, and unit price
             newItemDiv.innerHTML = `
                 <label for="description[]">Description:</label>
-                <input type="text" name="description[]" required><br><br>
+                <input type="text" name="description[]" required>
 
                 <label for="quantity[]">Quantity:</label>
-                <input type="number" name="quantity[]" required><br><br>
+                <input type="number" name="quantity[]" required>
 
                 <label for="unit_price[]">Unit Price:</label>
-                <input type="number" step="0.01" name="unit_price[]" required><br><br>
+                <input type="number" step="0.01" name="unit_price[]" required>
             `;
             
             // Append the new item div to the container
@@ -31,38 +32,40 @@
     </script>
 </head>
 <body>
-    <h1>Generate Invoice</h1>
-    <form method="POST" action="/generate">
-        <label for="customer_name">Customer Name:</label>
-        <input type="text" id="customer_name" name="customer_name" required><br><br>
+    <div class="container">
+        <h1>Generate Invoice</h1>
+        <form method="POST" action="/generate">
+            <label for="customer_name">Customer Name:</label>
+            <input type="text" id="customer_name" name="customer_name" required>
 
-        <label for="customer_address">Customer Address:</label>
-        <input type="text" id="customer_address" name="customer_address" required><br><br>
+            <label for="customer_address">Customer Address:</label>
+            <input type="text" id="customer_address" name="customer_address" required>
 
-        <label for="customer_email">Customer Email:</label>
-        <input type="email" id="customer_email" name="customer_email" required><br><br>
+            <label for="customer_email">Customer Email:</label>
+            <input type="email" id="customer_email" name="customer_email" required>
 
-        <h2>Invoice Items</h2>
-        <div id="item-container">
-            <!-- First item fields -->
-            <div class="item">
-                <label for="description[]">Description:</label>
-                <input type="text" name="description[]" required><br><br>
+            <h2>Invoice Items</h2>
+            <div id="item-container">
+                <!-- First item fields -->
+                <div class="item">
+                    <label for="description[]">Description:</label>
+                    <input type="text" name="description[]" required>
 
-                <label for="quantity[]">Quantity:</label>
-                <input type="number" name="quantity[]" required><br><br>
+                    <label for="quantity[]">Quantity:</label>
+                    <input type="number" name="quantity[]" required>
 
-                <label for="unit_price[]">Unit Price:</label>
-                <input type="number" step="0.01" name="unit_price[]" required><br><br>
+                    <label for="unit_price[]">Unit Price:</label>
+                    <input type="number" step="0.01" name="unit_price[]" required>
+                </div>
             </div>
-        </div>
 
-        <button type="button" onclick="addItem()">Add Another Item</button><br><br>
+            <button type="button" class="add-item-btn" onclick="addItem()">Add Another Item</button>
 
-        <label for="received_amount">Received Amount:</label>
-        <input type="number" step="0.01" id="received_amount" name="received_amount" required><br><br>
+            <label for="received_amount">Received Amount:</label>
+            <input type="number" step="0.01" id="received_amount" name="received_amount" required>
 
-        <button type="submit">Generate Invoice</button>
-    </form>
+            <button type="submit">Generate Invoice</button>
+        </form>
+    </div>
 </body>
 </html>
