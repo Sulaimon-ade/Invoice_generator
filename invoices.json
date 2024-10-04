@@ -733,5 +733,218 @@
         "tax_amount": 17.400000000000002,
         "total_amount": 191.4,
         "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728037455",
+        "customer": {
+            "name": "hdkd",
+            "address": "djhdi",
+            "email": "ddh"
+        },
+        "items": [
+            {
+                "description": "duhd",
+                "quantity": 1,
+                "unit_price": 300.0,
+                "total_price": 300.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 300.0,
+        "tax_amount": 30.0,
+        "total_amount": 330.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728038008",
+        "customer": {
+            "name": "dhoid",
+            "address": "dos",
+            "email": "hsdi"
+        },
+        "items": [
+            {
+                "description": "idh",
+                "quantity": 34,
+                "unit_price": 3435.0,
+                "total_price": 116790.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 116790.0,
+        "tax_amount": 11679.0,
+        "total_amount": 128469.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728038676",
+        "customer": {
+            "name": "ade",
+            "address": "niyi",
+            "email": "baba"
+        },
+        "items": [
+            {
+                "description": "sokoto",
+                "quantity": 2,
+                "unit_price": 2300.0,
+                "total_price": 4600.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 4600.0,
+        "tax_amount": 460.0,
+        "total_amount": 5060.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728039142",
+        "customer": {
+            "name": "nand",
+            "address": "ndns",
+            "email": "dgs"
+        },
+        "items": [
+            {
+                "description": "hidd",
+                "quantity": 12,
+                "unit_price": 390.0,
+                "total_price": 4680.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 4680.0,
+        "tax_amount": 468.0,
+        "total_amount": 5148.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728039478",
+        "customer": {
+            "name": "andhd",
+            "address": "shidhs",
+            "email": "hsdjs"
+        },
+        "items": [
+            {
+                "description": "suhdohdfhsdd",
+                "quantity": 2333,
+                "unit_price": 30.0,
+                "total_price": 69990.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 69990.0,
+        "tax_amount": 6999.0,
+        "total_amount": 76989.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728040419",
+        "customer": {
+            "name": "hanoot",
+            "address": "dhos",
+            "email": "dis"
+        },
+        "items": [
+            {
+                "description": "dhs",
+                "quantity": 2,
+                "unit_price": 233.0,
+                "total_price": 466.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 466.0,
+        "tax_amount": 46.6,
+        "total_amount": 512.6,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728040687",
+        "customer": {
+            "name": "huh",
+            "address": "hojh",
+            "email": "hig"
+        },
+        "items": [
+            {
+                "description": "ih",
+                "quantity": 5,
+                "unit_price": 900.0,
+                "total_price": 4500.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 4500.0,
+        "tax_amount": 450.0,
+        "total_amount": 4950.0,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728040747",
+        "customer": {
+            "name": "nahoe",
+            "address": "hoe",
+            "email": "dhisi"
+        },
+        "items": [
+            {
+                "description": "duhos",
+                "quantity": 2,
+                "unit_price": 299.0,
+                "total_price": 598.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 598.0,
+        "tax_amount": 59.800000000000004,
+        "total_amount": 657.8,
+        "date": "2024-10-04"
+    },
+    {
+        "invoice_number": "INV-1728040930",
+        "customer": {
+            "name": "man",
+            "address": "woman",
+            "email": "boy"
+        },
+        "items": [
+            {
+                "description": "girl",
+                "quantity": 34,
+                "unit_price": 900.0,
+                "total_price": 30600.0
+            },
+            {
+                "description": "who",
+                "quantity": 34,
+                "unit_price": 900.0,
+                "total_price": 30600.0
+            },
+            {
+                "description": "me",
+                "quantity": 34,
+                "unit_price": 800.0,
+                "total_price": 27200.0
+            },
+            {
+                "description": "use",
+                "quantity": 4,
+                "unit_price": 800.0,
+                "total_price": 3200.0
+            },
+            {
+                "description": "here",
+                "quantity": 219,
+                "unit_price": 90.0,
+                "total_price": 19710.0
+            }
+        ],
+        "tax_rate": 0.1,
+        "total_before_tax": 111310.0,
+        "tax_amount": 11131.0,
+        "total_amount": 122441.0,
+        "date": "2024-10-04"
     }
 ]
