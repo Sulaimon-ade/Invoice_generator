@@ -1,16 +1,33 @@
 import json
 import sys
+import locale
+from reportlab.pdfbase.ttfonts import TTFont  # Import for handling TrueType fonts
+from reportlab.pdfbase import pdfmetrics      # Import for font registration
 from datetime import datetime
 from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas
+from reportlab.pdfgen.canvas import Canvas  # Import Canvas correctly
 from reportlab.lib import colors
 from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.enums import TA_CENTER
+from reportlab.lib import utils
+import locale
+
+# Register the DejaVuSans font
+pdfmetrics.registerFont(TTFont('DejaVuSans', 'static/DejaVuSans.ttf'))
+
+def format_currency(value):
+    # Directly use the Naira sign instead of the Unicode escape sequence
+    return "# {:,.2f}".format(value)
+
+
+# Set locale for currency formatting
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 # Constants
 CUSTOMERS_FILE = 'customers.json'
 INVOICES_FILE = 'invoices.json'
-RECEIVED_AMOUNT = 50000  # Example received amount, modify as needed
 
 # Model for a Customer
 class Customer:
@@ -42,7 +59,7 @@ class InvoiceItem:
 
 # Model for an Invoice
 class Invoice:
-    def __init__(self, customer, items, tax_rate=0.1):
+    def __init__(self, customer, items, tax_rate=0.03):
         self.customer = customer
         self.items = items
         self.tax_rate = tax_rate
@@ -70,20 +87,6 @@ class Invoice:
             "date": self.date
         }
 
-from reportlab.lib.pagesizes import A4
-from reportlab.lib import colors
-from reportlab.lib.units import inch
-from reportlab.pdfgen import canvas
-from reportlab.pdfgen.canvas import Canvas
-from reportlab.lib.pagesizes import letter
-
-from reportlab.lib.pagesizes import A4
-from reportlab.lib import colors
-from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.enums import TA_CENTER
-from reportlab.lib import utils
 
 # Function to resize and draw the logo at a specific position (top-left corner)
 def draw_logo(canvas, logo_path):
@@ -120,11 +123,11 @@ class CustomCanvas(Canvas):
             draw_logo(self, self.logo_path)
         super().onFirstPage(*args, **kwargs)
 
-# Function to generate the PDF invoice with logo and watermark
-def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, balance_due=0):
+# Function to generate the PDF invoice with logo, watermark, and discount handling
+def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, balance_due=0, discount=0):
     pdf = SimpleDocTemplate(filename, pagesize=A4)
     elements = []
-    
+
     styles = getSampleStyleSheet()
     styles['Title'].alignment = TA_CENTER
 
@@ -138,7 +141,7 @@ def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, b
 
     # Customer and Company Info
     customer_info = Paragraph(f"<b>Billed To:</b><br/>{invoice.customer.name}<br/>{invoice.customer.address}<br/>{invoice.customer.email}", styles['Normal'])
-    company_info = Paragraph(f"<b>Fayina Luxury Couture</b><br/>Block E2 Abu gidado street,wuye, Abuja, Nigeria Abuja<br/>Contact: fayinaluxurycouture@yahoo.com<br/>Phone: +2349032837162", styles['Normal'])
+    company_info = Paragraph(f"<b>Fayina Luxury Couture</b><br/>Block E2 Abu gidado street,wuye, Abuja, Nigeria<br/>Contact: fayinaluxurycouture@yahoo.com<br/>Phone: +2349032837162", styles['Normal'])
 
     table_info = [[customer_info, company_info]]
     table_header = Table(table_info, colWidths=[3 * inch, 3 * inch])
@@ -148,14 +151,34 @@ def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, b
     # Line Items Section
     items_data = [["S/N", "Item", "Qty", "Unit Price", "Total"]]
     for idx, item in enumerate(invoice.items, start=1):
-        items_data.append([f"{idx}", item.description, item.quantity, f"N {item.unit_price:.2f}", f"N {item.total_price():.2f}"])
+        items_data.append([f"{idx}", item.description, item.quantity, f"# {item.unit_price:.2f}", f"# {item.total_price():.2f}"])
 
     # Totals Section
-    items_data += [["", "", "", "Subtotal", f"N {invoice.total_before_tax():.2f}"],
-                   ["", "", "", "Tax", f"N {invoice.tax_amount():.2f}"],
-                   ["", "", "", "Total", f"N {invoice.total_amount():.2f}"],
-                   ["", "", "", "Received", f"N {received_amount:.2f}"],
-                   ["", "", "", "Balance Due", f"N {balance_due:.2f}"]]
+    total_before_tax = invoice.total_before_tax()
+    total_tax = invoice.tax_amount()
+    total_with_tax = total_before_tax + total_tax  # Correct calculation of total after tax
+
+    # Add rows for Subtotal and Tax
+    items_data += [["", "", "", "Subtotal", f"# {total_before_tax:.2f}"],
+                   ["", "", "", "Tax", f"# {total_tax:.2f}"]]
+
+    # Conditionally add the Discount and Total Before Discount rows only if the discount is greater than 0
+    if discount > 0:
+        # Show Total Before Discount only when a discount is applied
+        items_data += [["", "", "", "Total Before Discount", f"# {total_with_tax:.2f}"],
+                       ["", "", "", "Discount", f"# {discount:.2f}"],
+                       ["", "", "", "Total After Discount", f"# {(total_with_tax - discount):.2f}"]]
+        # Adjust the balance due after discount is applied
+        balance_due = (total_with_tax - discount) - received_amount
+    else:
+        # If no discount, directly show the Total After Discount (same as Total Before Discount)
+        items_data += [["", "", "", "Final Total", f"# {total_with_tax:.2f}"]]
+        # Adjust the balance due without discount
+        balance_due = total_with_tax - received_amount
+
+    # Add the Received and Balance Due rows
+    items_data += [["", "", "", "Received", f"# {received_amount:.2f}"],
+                   ["", "", "", "Balance Due", f"# {balance_due:.2f}"]]
 
     table_items = Table(items_data, colWidths=[0.5 * inch, 3.5 * inch, 1 * inch, 1.5 * inch, 1.5 * inch])
     table_items.setStyle(TableStyle([
@@ -172,15 +195,15 @@ def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, b
 
     # Footer
     footer = Paragraph("""
-    <b>Thank you for your business!</b><br/>
+    <b>Thank you for your patronage!</b><br/>
     Payment can be made to:<br/>
-    Your Company Name<br/>
+    Fayina Luxury Couture<br/>
     GTB Bank Plc, 0214413459<br/><br/>
     <b>Payment Policy:</b><br/>
     Payment is due within 14 days from the date of invoice. Late payments may incur a late fee of 1.5% per month on any outstanding balance. 
     Please ensure payments are made to the account provided above. If you have any questions or concerns regarding this invoice, kindly contact 
     us at fayinaluxurycouture@yahoo.com.<br/><br/>
-    Thank you for your prompt payment and continued business.
+    Thank you for your prompt payment and continued patronage.
     """, styles['Normal'])
     elements.append(footer)
 
@@ -188,6 +211,7 @@ def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, b
     pdf.build(elements, canvasmaker=lambda *args, **kwargs: CustomCanvas(*args, logo_path=logo_path, **kwargs))
 
     print(f"Invoice saved as {filename}")
+
 
 # JSON Data Handling
 def load_data(filename):
@@ -248,16 +272,17 @@ def create_invoice(logo_path=None):
 
     # Input the received amount from the user
     total_amount = invoice.total_amount()
-    print(f"The total amount for this invoice is: N {total_amount:.2f}")
+    print(f"The total amount for this invoice is: {format_currency(total_amount)}")
     received_amount = float(input("Enter the received amount: "))
-    
+    discount = float(input("Enter the discount (if any): "))
+
     # Calculate the balance due
-    balance_due = total_amount - received_amount
-    print(f"Balance due is: N {balance_due:.2f}")
+    balance_due = total_amount - discount - received_amount
+    print(f"Balance due is: {format_currency(balance_due)}")
 
     # Generate and save the invoice PDF
     filename = f"{invoice.invoice_number}.pdf"
-    generate_invoice_pdf(invoice, filename, logo_path, received_amount, balance_due)
+    generate_invoice_pdf(invoice, filename, logo_path, received_amount, balance_due, discount)
 
     save_invoice(invoice)
     print(f"Invoice generated and saved as {filename}\n")
@@ -268,7 +293,7 @@ def view_invoices():
         print("No invoices found.")
         return
     for invoice in invoices:
-        print(f"Invoice #{invoice['invoice_number']}, Total: #{invoice['total_amount']}, Date: {invoice['date']}")
+        print(f"Invoice #{invoice['invoice_number']}, Total: {format_currency(invoice['total_amount'])}, Date: {invoice['date']}")
 
 def add_customer():
     customer_name = input("Enter the customer's name: ")
@@ -294,6 +319,7 @@ def main():
             sys.exit()
         else:
             print("Invalid choice. Please select a valid option.")
+
 # Example Usage
 if __name__ == "__main__":
     main()
