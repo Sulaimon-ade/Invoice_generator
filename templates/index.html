@@ -1,36 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate Invoice</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script>
-        function addItem() {
-            // Get the item container div
-            const itemContainer = document.getElementById('item-container');
+        // Function to format numbers with commas
+        function formatNumber(input) {
+            // Remove any non-numeric characters, excluding the period (.)
+            let value = input.value.replace(/[^0-9.]/g, '');
+            // Format the number with commas
+            let formattedValue = parseFloat(value).toLocaleString('en');
+            input.value = formattedValue;
+        }
 
-            // Create a new div for the new item
+        function addItem() {
+            const itemContainer = document.getElementById('item-container');
             const newItemDiv = document.createElement('div');
             newItemDiv.classList.add('item');
-            
-            // Create input fields for description, quantity, and unit price
+
             newItemDiv.innerHTML = `
-                <label for="description[]">Description:</label>
-                <input type="text" name="description[]" required>
+                <div class="item-row">
+                    <label for="description[]">Description:</label>
+                    <input type="text" name="description[]" required>
 
-                <label for="quantity[]">Quantity:</label>
-                <input type="number" name="quantity[]" required>
+                    <label for="quantity[]">Quantity:</label>
+                    <input type="text" name="quantity[]" required oninput="formatNumber(this)">
 
-                <label for="unit_price[]">Unit Price:</label>
-                <input type="number" step="0.01" name="unit_price[]" required>
+                    <label for="unit_price[]">Unit Price:</label>
+                    <input type="text" name="unit_price[]" required oninput="formatNumber(this)">
+
+                    <button type="button" class="edit-item-btn" onclick="editItem(this)">Edit</button>
+                    <button type="button" class="remove-item-btn" onclick="removeItem(this)">Remove</button>
+                </div>
             `;
-            
-            // Append the new item div to the container
             itemContainer.appendChild(newItemDiv);
+        }
+
+        function removeItem(button) {
+            const itemDiv = button.parentElement;
+            itemDiv.remove();
+        }
+
+        function editItem(button) {
+            const itemRow = button.parentElement;
+            const inputs = itemRow.querySelectorAll('input');
+            if (button.textContent === 'Edit') {
+                inputs.forEach(input => input.disabled = false);
+                button.textContent = 'Save';
+            } else {
+                inputs.forEach(input => input.disabled = true);
+                button.textContent = 'Edit';
+            }
+        }
+
+        // Function to fill the input with "Not Provided" when the button is clicked
+        function fillNotProvided(fieldId) {
+            document.getElementById(fieldId).value = "Not@Provided";
         }
     </script>
 </head>
+
 <body>
     <div class="container">
         <h1>Generate Invoice</h1>
@@ -39,33 +71,51 @@
             <input type="text" id="customer_name" name="customer_name" required>
 
             <label for="customer_address">Customer Address:</label>
-            <input type="text" id="customer_address" name="customer_address" required>
+            <div class="input-group">
+                <input type="text" id="customer_address" name="customer_address" required>
+                <button type="button" class="not-provided-btn" onclick="fillNotProvided('customer_address')">Not
+                    Provided</button>
+            </div>
 
             <label for="customer_email">Customer Email:</label>
-            <input type="email" id="customer_email" name="customer_email" required>
+            <div class="input-group">
+                <input type="email" id="customer_email" name="customer_email" required>
+                <button type="button" class="not-provided-btn" onclick="fillNotProvided('customer_email')">Not
+                    Provided</button>
+            </div>
 
             <h2>Invoice Items</h2>
             <div id="item-container">
                 <!-- First item fields -->
                 <div class="item">
-                    <label for="description[]">Description:</label>
-                    <input type="text" name="description[]" required>
+                    <div class="item-row">
+                        <label for="description[]">Description:</label>
+                        <input type="text" name="description[]" required>
 
-                    <label for="quantity[]">Quantity:</label>
-                    <input type="number" name="quantity[]" required>
+                        <label for="quantity[]">Quantity:</label>
+                        <input type="text" name="quantity[]" required oninput="formatNumber(this)">
 
-                    <label for="unit_price[]">Unit Price:</label>
-                    <input type="number" step="0.01" name="unit_price[]" required>
+                        <label for="unit_price[]">Unit Price:</label>
+                        <input type="text" name="unit_price[]" required oninput="formatNumber(this)">
+
+                        <button type="button" class="edit-item-btn" onclick="editItem(this)">Edit</button>
+                        <button type="button" class="remove-item-btn" onclick="removeItem(this)">Remove</button>
+                    </div>
                 </div>
             </div>
 
             <button type="button" class="add-item-btn" onclick="addItem()">Add Another Item</button>
 
+            <label for="discount">Discount (Optional):</label>
+            <input type="text" id="discount" name="discount" placeholder="Enter discount amount"
+                oninput="formatNumber(this)">
+
             <label for="received_amount">Received Amount:</label>
-            <input type="number" step="0.01" id="received_amount" name="received_amount" required>
+            <input type="text" id="received_amount" name="received_amount" required oninput="formatNumber(this)">
 
             <button type="submit">Generate Invoice</button>
         </form>
     </div>
 </body>
+
 </html>
