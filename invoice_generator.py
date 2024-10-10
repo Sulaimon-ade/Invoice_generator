@@ -23,7 +23,7 @@ def format_currency(value):
 
 
 # Set locale for currency formatting
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+#locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 # Constants
 CUSTOMERS_FILE = 'customers.json'
