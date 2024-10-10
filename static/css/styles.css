@@ -3,10 +3,8 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    height: auto; /* Remove the fixed height */
+    overflow-y: auto; /* Allow vertical scrolling */
 }
 
 .container {
@@ -14,14 +12,17 @@ body {
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    max-width: 600px; /* Increased width for more content space */
     width: 100%;
+    box-sizing: border-box;
+    margin: 20px auto; /* Add margin for space at the top and bottom */
 }
 
 h1 {
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
+    color: #333;
 }
 
 label {
@@ -29,17 +30,19 @@ label {
     display: block;
     margin-bottom: 8px;
     font-size: 14px;
+    color: #333;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="number"] {
-    width: 100%;
+    width: calc(100% - 110px); /* Adjust width to leave space for buttons */
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 14px;
+    box-sizing: border-box;
 }
 
 button {
@@ -51,6 +54,7 @@ button {
     cursor: pointer;
     font-size: 16px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 button:hover {
@@ -65,8 +69,121 @@ button:hover {
     cursor: pointer;
     font-size: 14px;
     margin-bottom: 20px;
+    width: auto;
+    display: block;
 }
 
 .add-item-btn:hover {
     background-color: #025aa5;
+}
+
+/* Styles for item rows (each added item) */
+.item-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.item-row label {
+    flex: 1 1 100%;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.item-row input {
+    flex: 1 1 30%;
+    padding: 8px;
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.edit-item-btn,
+.remove-item-btn {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    flex: 1 1 auto;
+    margin-left: 10px;
+    width: auto;
+}
+
+.edit-item-btn:hover {
+    background-color: #ec971f;
+}
+
+.remove-item-btn {
+    background-color: #d9534f;
+}
+
+.remove-item-btn:hover {
+    background-color: #c9302c;
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .item-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .item-row input {
+        flex: 1 1 100%;
+    }
+
+    .edit-item-btn,
+    .remove-item-btn {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .add-item-btn {
+        width: 100%;
+    }
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds space between input and button */
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    width: calc(100% - 110px); 
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.not-provided-btn {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.not-provided-btn:hover {
+    background-color: #ec971f;
 }
