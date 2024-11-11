@@ -141,7 +141,7 @@ def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, b
 
     # Customer and Company Info
     customer_info = Paragraph(f"<b>Billed To:</b><br/>{invoice.customer.name}<br/>{invoice.customer.address}<br/>{invoice.customer.email}", styles['Normal'])
-    company_info = Paragraph(f"<b>Fayina Luxury Couture</b><br/>Block E2 Abu gidado street,wuye, Abuja, Nigeria<br/>Contact: fayinaluxurycouture@yahoo.com<br/>Phone: +2349032837162", styles['Normal'])
+    company_info = Paragraph(f"<b>Fayina Luxury Couture</b><br/>Abu gidado street,wuye, Abuja, Nigeria<br/>Contact: fayinaluxurycouture@yahoo.com<br/>Phone: +2349032837162", styles['Normal'])
 
     table_info = [[customer_info, company_info]]
     table_header = Table(table_info, colWidths=[3 * inch, 3 * inch])
@@ -198,7 +198,7 @@ def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, b
     <b>Thank you for your patronage!</b><br/>
     Payment can be made to:<br/>
     Fayina Luxury Couture<br/>
-    GTB Bank Plc, 0214413459<br/><br/>
+    Access Bank Plc, 1390395367<br/><br/>
     <b>Payment Policy:</b><br/>
     Payment is due within 14 days from the date of invoice. Late payments may incur a late fee of 1.5% per month on any outstanding balance. 
     Please ensure payments are made to the account provided above. If you have any questions or concerns regarding this invoice, kindly contact 
