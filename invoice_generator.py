@@ -197,7 +197,7 @@ def generate_invoice_pdf(invoice, filename, logo_path=None, received_amount=0, b
     footer = Paragraph("""
     <b>Thank you for your patronage!</b><br/>
     Payment can be made to:<br/>
-    Fayina Luxury Couture<br/>
+    Fatima Gidado<br/>
     Access Bank Plc, 1390395367<br/><br/>
     <b>Payment Policy:</b><br/>
     Payment is due within 14 days from the date of invoice. Late payments may incur a late fee of 1.5% per month on any outstanding balance. 
